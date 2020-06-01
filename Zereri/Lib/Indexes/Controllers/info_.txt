@@ -1,0 +1,1 @@
+{"\/user\/{id}":{"GET":["api\\Test","test",[null],null]},"\/student":{"GET":["Student","getList",[null,"CheckLogin"],null]},"\/login":{"GET":["admin\\Login","login",[null,""],null],"POST":["admin\\Login","doLogin",[null,""],null]}}

@@ -1,0 +1,1 @@
+{"withParams":{"117115101114":["\/user\/([^\\\/]*)"]},"withParamsRules":{"\/user\/([^\\\/]*)":"\/user\/{id}"},"withoutParams":["\/student"]}
