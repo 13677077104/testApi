@@ -4,6 +4,7 @@
 vendor/*
 logs/*
 tests/*
+public/Smarty/templates_c/*
 
 
 

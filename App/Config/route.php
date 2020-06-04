@@ -3,7 +3,8 @@
 return [
     "admin" => [
         '/' => [
-            'GET' => 'admin\Index@index'
+            'GET' => 'admin\Index@index',
+            'POST' => 'admin\Index@ajaxGetData'
         ],
     ],
 
