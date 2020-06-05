@@ -14,13 +14,12 @@ class controller
         response(200, $pageData, "html", $tpl);
     }
 
-    public function paging($table, $current=1, $pageSize=5){
-        $beg = ($current - 1 ) * $pageSize;
-        $content = TB($table)->limit($beg, $pageSize)->select();
+    public function paging($table, $orderBy, $start=0, $pageSize=5){
+        $content = TB($table)->orderBy($orderBy)->limit($start, $pageSize)->select();
         $total = TB($table)->count('id')->select('id');
         $page = [
-            'total' => $total[0]['id'],
-            'current' => $current,
+            'iTotalDisplayRecords' => $total[0]['id'],
+            'sEcho' => $start,
             'data' => $content,
         ];
         return $page;
