@@ -10,7 +10,7 @@ class Index extends controller
     public function index(){
 
 
-        $this->display('index.html');
+        $this->display('article/list.html');
         //response(200, [], "html", "index.html");
     }
 
@@ -26,8 +26,7 @@ class Index extends controller
         $start = $_POST['start']?:0;
         $pageSize = $_POST['length']?:10;
         //数据分页
-        $data = $this->paging('content', $orderBy, $start , $pageSize);
-
+        $data = Content::Page($start,$pageSize, $orderBy);
         response(200, $data);
     }
 

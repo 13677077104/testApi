@@ -1,1 +1,1 @@
-{"withoutParams":["\/"]}
+{"withoutParams":["\/","\/article"],"withParams":{"9711411610599108101":["\/article\/([^\\\/]*)"]},"withParamsRules":{"\/article\/([^\\\/]*)":"\/article\/{id}"}}

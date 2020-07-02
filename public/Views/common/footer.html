@@ -4,8 +4,9 @@
 
 <!-- Bootstrap 4 -->
 <script src="/js/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
+<script src="/js/admin/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Summernote -->
+<script src="/js/admin/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- DataTables -->
 <script src="/js/admin/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/js/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -19,7 +20,13 @@
 
 <script>
     $(function () {
-        $("#example1").DataTable({
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-center',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        $("#article-list").DataTable({
             "searching": false,
             "serverSide": true,
             "iDisplayLength": 10,
@@ -38,13 +45,85 @@
             },
             "columns": [
                 { "data": "id"},
-                { "data": "content" },
+                { "data": "title" },
+                /*{ "data": "content" },*/
                 { "data": "create_time" },
-                { "data": "update_time" }
+                { "data": "update_time" },
+                { "data": null }
             ],
+            "columnDefs": [ {
+                "render" : function(data, type, row, meta){
+                    let _html = '<a href="article/'+row.id+'" class="update-article">编辑</a> | ' +
+                        '<a href="javascript:;" data-id="'+row.id+'" class="delete-article">删除</a>';
+                    return _html;
+                },
+                "targets" : 4
+            },]
+        })
+        .on('click', '.delete-article', function (e) {
+            let _this = $(this);
+            let id = _this.data('id');
+            if (confirm('是否删除？删除后不可恢复')){
+                $.get({
+                    url:"article/"+id,
+                    method:'delete',
+                    success: function (res) {
+                        let rs = JSON.parse(res);
+                        if (rs.status) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: rs.msg
+                            });
+                            _this.parents('tr').remove();
+                        }else{
+                            Toast.fire({icon: 'error', title: rs.msg });
+                        }
+
+                    }
+                });
+            }
+
 
         });
+        // 富文本编辑器初始化
+        $('.full-editor').summernote({
+                minHeight : 500,
+        });
+
+        $('#form button').on('click', function (e) {
+            e.preventDefault();
+        });
+
+        $('#form').on('click', '.submit-form', function () {
+            let data = $(this).parents('form').serialize();
+            $.ajax({
+                url:"/admin/article",
+                method:"post",
+                data:data,
+                success: function (res) {
+                    let rs = JSON.parse(res);
+                    if (!rs.status) {
+                        Toast.fire({
+                            icon: 'error',
+                            title: rs.msg
+                        });
+                        return false;
+                    }
+                    Toast.fire({icon: 'success', title: rs.msg});
+                    if(rs.url){
+                        setTimeout(function () {
+                            window.location.href = rs.url;
+                        }, 3000);
+                    }
+                }
+            });
+
+        });
+
+
     });
+
+
 </script>
 
 </body>

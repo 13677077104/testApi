@@ -4,20 +4,30 @@
 
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">来一篇？</h3>
+                    <h3 class="card-title"><{if isset($title)}>修改下！<{else}>来一篇？ <{/if}></h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form role="form" action="add.html" method="post" id="form">
+                    <{if isset($id)}>
+                    <input type="hidden" name="id" value="<{$id}>">
+                    <{/if}>
                     <div class="card-body">
                         <div class="form-group">
                             <label>title</label>
+                            <{if isset($title)}>
                             <input type="text" name="title" class="form-control" placeholder="title" value="<{$title|default:'请输入姓名'}>">
+                            <{else}>
+                            <input type="text" name="title" class="form-control" placeholder="title">
+                            <{/if}>
                         </div>
                         <div class="form-group">
                             <label >content</label>
+                            <{if isset($title)}>
+                            <textarea class="form-control full-editor" name="content" ><{$content}></textarea>
+                            <{else}>
                             <textarea class="form-control full-editor" name="content" ></textarea>
-
+                            <{/if}>
                         </div>
                     </div>
                     <!-- /.card-body -->
