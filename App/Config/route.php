@@ -17,9 +17,9 @@ return [
             'DELETE' => 'admin\article\Article@delete',
             'GET' => 'admin\article\Article@showUpdate',
         ],
-        '/category' => [
+        '/category/list' => [
             'GET' => 'admin\Category@cateList',
-            'POST' => 'admin\Category@save',
+            'POST' => 'admin\article\Article@ajaxGetData'
         ],
     ],
 
