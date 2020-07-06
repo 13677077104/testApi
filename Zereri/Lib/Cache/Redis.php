@@ -19,7 +19,6 @@ class Redis implements \Zereri\Lib\Interfaces\Cache
     protected function newInstance()
     {
         $config = config("redis");
-        prd($config);
         if (!$config["cluster"]) {
             return $this->connectSingleRedis($config["server"][0], $config["server"][1], $config["auth"], $config["index"]);
         } else {

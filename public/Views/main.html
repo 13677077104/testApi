@@ -131,7 +131,7 @@
         <a href="index3.html" class="brand-link">
             <img src="/images/test.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">asdad 3</span>
+            <span class="brand-text font-weight-light">Zzane</span>
         </a>
 
         <!-- Sidebar -->
@@ -151,36 +151,31 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
+
+                    <{foreach from=$menu item=item}>
                     <li class="nav-item has-treeview menu-open">
-                        <a href="#" class="nav-link active">
+                        <a href="#" class="nav-link <{if $item.alias == $secondary.action}>active<{/if}>">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                文章
+                            <p><{$item.name}>
+                            <{if isset($item.child)}>
                                 <i class="right fas fa-angle-left"></i>
+                            <{/if}>
                             </p>
                         </a>
+                        <{if isset($item.child)}>
                         <ul class="nav nav-treeview">
+                            <{foreach from=$item.child item=child}>
                             <li class="nav-item">
-                                <a href="/admin/" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>全部文章</p>
+                                <a href="<{$child.url}>" class="nav-link">
+                                    <i class="far fa-circle nav-icon <{if $child.alias == $secondary.child_action}>fa-dot-circle<{/if}>"></i>
+                                    <p><{$child.name}></p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="/admin/" class="nav-link ">
-                                    <i class="far fa-dot-circle nav-icon"></i>
-
-                                    <p>文章分类</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/admin/article" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>添加文章</p>
-                                </a>
-                            </li>
+                            <{/foreach}>
                         </ul>
+                        <{/if}>
                     </li>
+                    <{/foreach}>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -191,11 +186,11 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
+        <div class="content-header" >
+            <div class="container-fluid" hidden>
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Dashboard</h1>
+                        <h1 class="m-0 text-dark"></h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">

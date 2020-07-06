@@ -34,7 +34,7 @@
             "autoWidth": false,
             "lengthMenu": [10, 25, 50, 75, 100],
             "ajax": {
-                url: "/admin/",
+                url: "/admin/article/list",
                 type: 'POST',
                 dataSrc: function (rest) {
                     if (rest.timeout) {
@@ -97,7 +97,7 @@
         $('#form').on('click', '.submit-form', function () {
             let data = $(this).parents('form').serialize();
             $.ajax({
-                url:"/admin/article",
+                url:"/admin/article/add",
                 method:"post",
                 data:data,
                 success: function (res) {

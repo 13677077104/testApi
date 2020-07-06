@@ -12,8 +12,7 @@ class Content extends Model
     public static function getRow($where){
         $key = key($where);
         $val = $where[$key];
-        $res = Content::where($key,'=', $val)->select();
-
+        $res = self::where($key,'=', $val)->select();
         return $res[0];
     }
     /**

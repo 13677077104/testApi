@@ -1,5 +1,5 @@
 <?php
-
+$menu = require_once 'menu.php';
 return [
     /*
      *    日志记录方式
@@ -78,7 +78,13 @@ return [
     'headers'         => [
         "content-type"
     ],
-    
+
+
+    /**
+     * 后台左侧菜单
+     */
+    'menu'            => $menu,
+
 
     /**
      * 状态码

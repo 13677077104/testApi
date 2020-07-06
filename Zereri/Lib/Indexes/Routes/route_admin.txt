@@ -1,1 +1,1 @@
-{"withoutParams":["\/","\/article"],"withParams":{"9711411610599108101":["\/article\/([^\\\/]*)"]},"withParamsRules":{"\/article\/([^\\\/]*)":"\/article\/{id}"}}
+{"withoutParams":["\/","\/article\/list","\/article\/add","\/category"],"withParams":{"9711411610599108101":["\/article\/([^\\\/]*)"]},"withParamsRules":{"\/article\/([^\\\/]*)":"\/article\/{id}"}}
